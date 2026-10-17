@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oma's Store — Shop Everything You Need</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">Oma's <span>Store</span></div>
+    <div class="search-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="Search products, brands and categories">
+      <div class="search-dropdown" id="search-dropdown"></div>
+    </div>
+    <div class="header-actions">
+      <a href="notifications.html" class="icon-btn" aria-label="Notifications" style="position:relative;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span class="notif-count">0</span>
+      </a>
+      <button class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="border:none; background:none; font-size:1.1rem;">🌙</button>
+      <span class="account-link" id="account-label">Login</span>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="wishlist-count">0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div id="gated-content">
+
+  <section class="hero-slider" id="hero-slider">
+    <div class="hero-slide active" style="background: linear-gradient(120deg, #C05A28, #9C4720);">
+      <div class="hero-inner">
+        <div>
+          <h1 data-i18n="hero1_title">Everything your home needs, delivered to your door.</h1>
+          <p data-i18n="hero1_sub">Phones, fashion, home essentials and more — shop trusted products at prices that make sense.</p>
+          <button class="hero-cta" data-i18n="shop_now" onclick="document.getElementById('deals-section').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide" style="background: linear-gradient(120deg, #2F6F4E, #1F4D36);">
+      <div class="hero-inner">
+        <div>
+          <h1 data-i18n="hero2_title">Today's deals are live 🔥</h1>
+          <p data-i18n="hero2_sub">Save on electronics, fashion, and more — for a limited time only.</p>
+          <button class="hero-cta" data-i18n="see_deals" onclick="document.getElementById('deals-section').scrollIntoView({behavior:'smooth'})">See Deals</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide" style="background: linear-gradient(120deg, #9C4720, #211D1A);">
+      <div class="hero-inner">
+        <div>
+          <h1 data-i18n="hero3_title">1,000+ products across 10 categories</h1>
+          <p data-i18n="hero3_sub">From groceries to furniture — whatever you need, Oma's Store has it.</p>
+          <button class="hero-cta" data-i18n="browse_all" onclick="document.getElementById('product-grid').scrollIntoView({behavior:'smooth'})">Browse All</button>
+        </div>
+      </div>
+    </div>
+    <button class="hero-arrow left" onclick="heroSlide(-1)" aria-label="Previous">‹</button>
+    <button class="hero-arrow right" onclick="heroSlide(1)" aria-label="Next">›</button>
+    <div class="hero-dots" id="hero-dots">
+      <span class="hero-dot active" onclick="heroGoTo(0)"></span>
+      <span class="hero-dot" onclick="heroGoTo(1)"></span>
+      <span class="hero-dot" onclick="heroGoTo(2)"></span>
+    </div>
+  </section>
+
+  <div class="section-title" id="deals-section" style="margin-top:24px;">
+    <h2 data-i18n="todays_deals">🔥 Today's Deals</h2>
+    <p data-i18n="deals_sub">Limited-time discounts</p>
+  </div>
+  <div class="deals-rail" id="deals-grid"></div>
+
+  <div class="categories">
+    <span class="chip active" data-category="All" data-i18n="cat_All">All</span>
+    <span class="chip" data-category="Electronics">Electronics</span>
+    <span class="chip" data-category="Phones & Tablets">Phones & Tablets</span>
+    <span class="chip" data-category="Fashion">Fashion</span>
+    <span class="chip" data-category="Bags">Bags</span>
+    <span class="chip" data-category="Home & Kitchen" data-i18n="cat_Home_Kitchen">Home & Kitchen</span>
+    <span class="chip" data-category="Beauty">Beauty</span>
+    <span class="chip" data-category="Sports">Sports</span>
+    <span class="chip" data-category="Groceries" data-i18n="cat_Groceries">Groceries</span>
+    <span class="chip" data-category="Baby & Kids" data-i18n="cat_Baby_Kids">Baby & Kids</span>
+    <span class="chip" data-category="Furniture">Furniture</span>
+  </div>
+
+  <div class="section-title">
+    <h2 data-i18n="popular_now">Popular right now</h2>
+    <p id="shown-count">1,000 products</p>
+  </div>
+
+  <div class="filter-bar">
+    <select id="sort-select">
+      <option value="popularity">Sort: Popularity</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="rating">Highest Rated</option>
+    </select>
+    <div class="price-range">
+      <input type="number" id="price-min" placeholder="Min ₦">
+      <span>–</span>
+      <input type="number" id="price-max" placeholder="Max ₦">
+      <button class="price-apply" id="price-apply-btn">Apply</button>
+    </div>
+  </div>
+
+  <div class="product-grid" id="product-grid"></div>
+  <div style="text-align:center; padding: 0 16px 30px;">
+    <button id="load-more-btn" class="btn-secondary" data-i18n="load_more" onclick="loadMoreProducts()" style="display:none; border:none; background:var(--ink); color:#fff;">Load More</button>
+  </div>
+
+  <div class="section-title" id="recently-viewed-section" style="display:none;">
+    <h2 data-i18n="recently_viewed">Recently Viewed</h2>
+  </div>
+  <div class="deals-rail" id="recent-grid"></div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Oma's Store</h4>
+      <p>A marketplace built on trust, quality, and fast delivery.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_customer_care">Customer Care</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Returns & Refunds</a>
+      <a href="#">Track My Order</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_about">About</h4>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Sell on Oma's Store</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_my_account">My Account</h4>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Create Account</a>
+      <a href="profile.html">My Profile</a>
+      <a href="wishlist.html">My Wishlist</a>
+      <a href="cart.html">My Cart</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_preferences">Preferences</h4>
+      <label style="display:block; margin-bottom:8px; font-size:0.85rem; color:#B9AFA1;">
+        Currency
+        <select id="currency-select" onchange="setCurrency(this.value)" style="display:block; margin-top:4px; padding:6px 8px; border-radius:6px; border:1px solid #3A342D; background:#17140F; color:#D8D0C6;">
+          <option value="NGN">₦ NGN</option>
+          <option value="USD">$ USD</option>
+          <option value="GBP">£ GBP</option>
+        </select>
+      </label>
+      <label style="display:block; font-size:0.85rem; color:#B9AFA1;">
+        Language
+        <select id="language-select" onchange="setLanguage(this.value)" style="display:block; margin-top:4px; padding:6px 8px; border-radius:6px; border:1px solid #3A342D; background:#17140F; color:#D8D0C6;">
+          <option value="en">English</option>
+          <option value="pcm">Pidgin</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Oma's Store. All rights reserved.</div>
+</footer>
+
+<!-- Login-required gate -->
+<div class="gate-overlay" id="gate-overlay" style="display:none;">
+  <div class="gate-box">
+    <h2>Welcome to Oma's Store</h2>
+    <p>Please log in or create an account to browse and shop our full catalogue.</p>
+    <a href="login.html" class="btn-primary">Log In</a>
+    <a href="signup.html" class="btn-secondary">Create Account</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

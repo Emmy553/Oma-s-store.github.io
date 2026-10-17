@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — Oma's Store</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Oma's <span>Store</span></a>
+    <div style="flex:1"></div>
+    <button class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="border:none; background:none; font-size:1.1rem;">🌙</button>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1>Welcome back</h1>
+    <p class="sub">Log in to continue shopping</p>
+
+    <div class="form-msg" id="li-msg"></div>
+
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="field">
+        <label for="li-email">Email address</label>
+        <input type="email" id="li-email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="li-password">Password</label>
+        <input type="password" id="li-password" placeholder="Your password" required>
+      </div>
+      <button type="submit" class="submit-btn">Log In</button>
+    </form>
+
+    <div class="auth-switch"><a href="forgot-password.html">Forgot password?</a></div>
+    <div class="auth-switch">Don't have an account? <a href="signup.html">Sign up</a></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

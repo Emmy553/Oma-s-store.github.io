@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Settings — Oma's Store</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Oma's <span>Store</span></a>
+    <div style="flex:1"></div>
+    <div class="header-actions">
+      <a href="notifications.html" class="icon-btn" aria-label="Notifications" style="position:relative;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span class="notif-count">0</span>
+      </a>
+      <button class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="border:none; background:none; font-size:1.1rem;">🌙</button>
+      <span class="account-link" id="account-label">Login</span>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div id="gated-content">
+  <div class="profile-wrap">
+    <h2 style="padding-top:20px;">Account Settings</h2>
+
+    <h3>Your Name</h3>
+    <div class="form-msg" id="name-msg"></div>
+    <form onsubmit="handleUpdateName(event)" style="display:flex; gap:8px; margin-bottom:24px;">
+      <input type="text" id="set-name" style="flex:1; border:1px solid var(--line); border-radius:8px; padding:11px 12px; background:var(--cream);">
+      <button type="submit" class="price-apply">Save</button>
+    </form>
+
+    <h3>Change Password</h3>
+    <div class="form-msg" id="pass-msg"></div>
+    <form id="password-form" onsubmit="handleChangePassword(event)">
+      <div class="field">
+        <label for="set-old-pass">Current password</label>
+        <input type="password" id="set-old-pass" required>
+      </div>
+      <div class="field">
+        <label for="set-new-pass">New password</label>
+        <input type="password" id="set-new-pass" placeholder="At least 4 characters" required>
+      </div>
+      <div class="field">
+        <label for="set-confirm-pass">Confirm new password</label>
+        <input type="password" id="set-confirm-pass" required>
+      </div>
+      <button type="submit" class="submit-btn" style="width:auto; padding:11px 22px;">Change Password</button>
+    </form>
+
+    <h3 style="margin-top:28px;">Saved Addresses</h3>
+    <div id="address-list"></div>
+
+    <h4 style="margin-top:16px;">Add New Address</h4>
+    <div class="form-msg" id="addr-msg"></div>
+    <form id="address-form" onsubmit="handleAddAddress(event)">
+      <div class="field">
+        <label for="addr-label">Label</label>
+        <input type="text" id="addr-label" placeholder="Home, Work, etc." required>
+      </div>
+      <div class="field">
+        <label for="addr-full">Full address</label>
+        <input type="text" id="addr-full" placeholder="Street, city, state" required>
+      </div>
+      <div class="field">
+        <label for="addr-phone">Phone number</label>
+        <input type="tel" id="addr-phone" placeholder="080..." required>
+      </div>
+      <button type="submit" class="submit-btn" style="width:auto; padding:11px 22px;">Save Address</button>
+    </form>
+
+    <a href="profile.html" style="display:inline-block; margin-top:20px; color:var(--clay-dark); font-weight:600;">← Back to profile</a>
+  </div>
+</div>
+
+<!-- Login-required gate -->
+<div class="gate-overlay" id="gate-overlay" style="display:none;">
+  <div class="gate-box">
+    <h2>Welcome to Oma's Store</h2>
+    <p>Please log in to manage your account settings.</p>
+    <a href="login.html" class="btn-primary">Log In</a>
+    <a href="signup.html" class="btn-secondary">Create Account</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
